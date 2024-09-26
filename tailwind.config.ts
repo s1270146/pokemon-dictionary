@@ -13,6 +13,20 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      height: {
+        "pickup": "calc((360 / 1280) * 100vw)",
+      },
+      padding: {
+        "pickup-bottom": "calc(( 55 / 1280 ) *100vw )",
+        "30": "calc((30 / 1280) * 100vw)",
+      },
+      spacing: {
+        'pickup-heading-30': 'calc((30 / 1280) * 100vw)',
+        'pickup-heading-90': 'calc((90 / 1280) * 100vw)',
+      },
+      width: {
+        'pickup-heading': 'calc((300 / 1280) * 100vw)',
+      },
     },
   },
   plugins: [],
