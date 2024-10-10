@@ -32,11 +32,13 @@ export default function Modal({
                     left: '50%',
                     right: 'auto',
                     bottom: 'auto',
+                    padding: '0',
                     marginRight: '-50%',
                     transform: 'translate(-50%, -50%)',
                     borderRadius: "0.5rem",
                     width: width ?? "300px",
-                    height: height ?? "300px"
+                    height: height ?? "300px",
+                    position: 'relative',
                 }
             }}
             onRequestClose={()=>closeModal()}
