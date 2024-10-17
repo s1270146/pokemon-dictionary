@@ -36,10 +36,10 @@ export default function Button({
                         px-4 py-2 w-full h-full text-black rounded-full border-2
                         transform transition
                         ${isSelected && !isDecision
-                            ? 'bg-yellow-50 border-yellow-500' 
-                            : 'bg-white -translate-x-1 -translate-y-1 border-gray-300 hover:translate-x-0 hover:translate-y-0'
+                            ? 'border-yellow-500' 
+                            : '-translate-x-1 -translate-y-1 border-gray-300 hover:translate-x-0 hover:translate-y-0'
                         }
-                        ${isDecision && `bg-red-600 border-red-600`}
+                        ${isDecision ? `bg-red-600 border-red-600`: isSelected ? 'bg-yellow-50' : 'bg-white' }
                     `}
                     >
                         {children}
