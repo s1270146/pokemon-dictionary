@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 export const useSortModal = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    
-    const openModal = () => setIsOpen(true);
-    const closeModal = () => setIsOpen(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-    return {isOpen, openModal, closeModal};
+  const openModal = () => setIsOpen(true);
+  const closeModal = () => setIsOpen(false);
+
+  return { isOpen, openModal, closeModal };
 };
