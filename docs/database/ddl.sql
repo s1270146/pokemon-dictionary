@@ -5,14 +5,14 @@ DROP TABLE IF EXISTS properties;
 DROP TABLE IF EXISTS types;
 
 CREATE TABLE types (
-    type_id SERIAL,
+    type_id INT,
     type_name VARCHAR(30) NOT NULL,
     img_url TEXT,
     PRIMARY KEY (type_id)
 );
 
 CREATE TABLE properties (
-    property_id SERIAL,
+    property_id INT,
     property_name VARCHAR(60) NOT NULL,
     description TEXT,
     PRIMARY KEY (property_id)
