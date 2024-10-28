@@ -22,12 +22,10 @@ CREATE TABLE pokemon (
     pokemon_no INT NOT NULL,
     pokemon_name VARCHAR(60) NOT NULL,
     img_url TEXT,
-    is_male BOOLEAN,
-    is_female BOOLEAN,
+    sex INT,
     category VARCHAR(60),
     weight FLOAT,
     height FLOAT,
-    property_id INT,
     hp SMALLINT,
     attack SMALLINT,
     defense SMALLINT,
@@ -36,7 +34,6 @@ CREATE TABLE pokemon (
     speed SMALLINT,
     evolved_pokemon_no INT,
     PRIMARY KEY (pokemon_no),
-    FOREIGN KEY (property_id) REFERENCES properties(property_id),
     FOREIGN KEY (evolved_pokemon_no) REFERENCES pokemon(pokemon_no)
 );
 
@@ -52,4 +49,12 @@ CREATE TABLE pokemon_types (
     PRIMARY KEY (pokemon_no, type_id),
     FOREIGN KEY (pokemon_no) REFERENCES pokemon(pokemon_no),
     FOREIGN KEY (type_id) REFERENCES types(type_id)
+);
+
+CREATE TABLE pokemon_properties (
+    pokemon_no INT NOT NULL,
+    property_id INT NOT NULL,
+    PRIMARY KEY (pokemon_no, property_id),
+    FOREIGN KEY (pokemon_no) REFERENCES pokemon(pokemon_no),
+    FOREIGN KEY (property_id) REFERENCES properties(property_id)
 );
