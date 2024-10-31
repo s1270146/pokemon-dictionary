@@ -1,4 +1,4 @@
-import Pickup from '@/components/layouts/Pickup';
+import Pickup from '@/components/layouts/pickup/Pickup';
 
 export default function Home() {
   return (

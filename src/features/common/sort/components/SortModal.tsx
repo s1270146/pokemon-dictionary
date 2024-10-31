@@ -1,9 +1,9 @@
 'use client';
 
-import Button from '@/components/elements/Button';
-import Modal from '@/components/elements/Modal';
-import ModalHeader from '@/components/elements/ModalHeader';
-import ModalHeading from '@/components/elements/ModalHeading';
+import Button from '@/components/elements/button/Button';
+import Modal from '@/components/elements/modal/Modal';
+import ModalHeader from '@/components/elements/modal/ModalHeader';
+import ModalHeading from '@/components/elements/modal/ModalHeading';
 import { sortImagePath } from '@/consts';
 import Image from 'next/image';
 
