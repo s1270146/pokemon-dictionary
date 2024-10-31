@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { pickupPath } from '@/consts';
-import NavigationButton from '@/components/elements/NavigationButton';
+import NavigationButton from '@/components/elements/button/NavigationButton';
 import { BiSolidLeftArrow, BiSolidRightArrow } from 'react-icons/bi';
 
 export default function Pickup() {

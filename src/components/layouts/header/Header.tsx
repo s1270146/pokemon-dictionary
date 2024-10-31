@@ -1,4 +1,4 @@
-import Logo from '@/components/elements/Logo';
+import Logo from '@/components/layouts/header/Logo';
 import SortButton from '@/features/common/sort/components/SortButton';
 import SearchButton from '@/features/common/search/components/SearchButton';
 
