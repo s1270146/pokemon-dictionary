@@ -4,21 +4,11 @@ import SpecGauge from '@/components/detail/SpecGauge';
 import Button from '@/components/elements/button/Button';
 import { usePropertyModal } from '../hooks';
 import PropertyModal from './PropertyModal';
+import { useContext } from 'react';
+import { PokemonContext } from '../../hooks';
 
 export default function ProfileDetail() {
-  const category = 'シャドーポケモン';
-  const height = 1.5;
-  const weight = 40.5;
-  const properties = 'のろわれボディ';
-  const hp = 6;
-  const kougeki = 6;
-  const bougyo = 6;
-  const tokukou = 10;
-  const tokubou = 7;
-  const speed = 9;
-  const propertyDescription =
-    'ＨＰが　減ったとき　くさタイプの　技の　威力が　上がる。';
-
+  const pokemon = useContext(PokemonContext);
   const { isOpen, openModal, closeModal } = usePropertyModal();
 
   return (
@@ -28,20 +18,22 @@ export default function ProfileDetail() {
           <div className="border-4 rounded-lg py-4 px-8 m-2 w-1/2">
             <div className="flex mb-4">
               <p className="text-lg font-bold">分類：</p>
-              <p className="text-lg">{category}</p>
+              <p className="text-lg">{pokemon?.category}</p>
             </div>
             <div className="flex mb-4">
               <p className="text-lg font-bold">タイプ：</p>
             </div>
             <div className="flex mb-4">
               <p className="text-lg font-bold">高さ：</p>
-              <p className="text-lg mr-4">{`${height}m`}</p>
+              <p className="text-lg mr-4">{`${pokemon?.weight}m`}</p>
               <p className="text-lg font-bold">重さ：</p>
-              <p className="text-lg">{`${weight}kg`}</p>
+              <p className="text-lg">{`${pokemon?.weight}kg`}</p>
             </div>
             <div className="flex mb-4 items-center">
               <p className="text-lg font-bold">特性：</p>
-              <p className="text-lg mr-4">{properties}</p>
+              <p className="text-lg mr-4">
+                {pokemon?.properties[0].propertyName}
+              </p>
               <Button
                 onClick={() => {
                   openModal();
@@ -52,28 +44,24 @@ export default function ProfileDetail() {
                 <p>特性</p>
               </Button>
               <PropertyModal
-                propertyName={properties}
-                description={propertyDescription}
+                propertyName={pokemon?.properties[0].propertyName ?? ''}
+                description={pokemon?.properties[0].description ?? ''}
                 isOpen={isOpen}
                 closeModal={() => closeModal()}
               />
             </div>
           </div>
           <div className="border-4 rounded-lg py-4 px-8 m-2 w-1/2">
-            <SpecGauge count={hp} title="HP" />
-            <SpecGauge count={kougeki} title="こうげき" />
-            <SpecGauge count={bougyo} title="ぼうぎょ" />
-            <SpecGauge count={tokukou} title="とくこう" />
-            <SpecGauge count={tokubou} title="とくぼう" />
-            <SpecGauge count={speed} title="すばやさ" />
+            <SpecGauge count={pokemon?.hp ?? 0} title="HP" />
+            <SpecGauge count={pokemon?.attack ?? 0} title="こうげき" />
+            <SpecGauge count={pokemon?.defense ?? 0} title="ぼうぎょ" />
+            <SpecGauge count={pokemon?.specialAttack ?? 0} title="とくこう" />
+            <SpecGauge count={pokemon?.specialDefense ?? 0} title="とくぼう" />
+            <SpecGauge count={pokemon?.speed ?? 0} title="すばやさ" />
           </div>
         </div>
         <div className="border-4 rounded-lg p-4 m-2">
-          <p className="text-xl px-8">
-            {
-              '命を　奪おうと　決めた　獲物の　影に　潜り込み　じっと　チャンスを　狙ってる。　（『ポケットモンスタースカーレット』より）'
-            }
-          </p>
+          <p className="text-xl px-8">{pokemon?.descriptions[0] ?? ''}</p>
         </div>
       </div>
     </div>

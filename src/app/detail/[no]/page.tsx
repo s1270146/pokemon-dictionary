@@ -1,5 +1,4 @@
-import DetailNavigation from '@/features/detail/navigation/components/DetailNavigation';
-import ProfileDetail from '@/features/detail/profile/components/ProfileDetail';
+import DetailView from '@/features/detail/components/DetailView';
 
 export default function Detail() {
   return (
@@ -9,8 +8,7 @@ export default function Detail() {
         backgroundColor: '#f0f0f0',
       }}
     >
-      <DetailNavigation />
-      <ProfileDetail />
+      <DetailView />
     </div>
   );
 }

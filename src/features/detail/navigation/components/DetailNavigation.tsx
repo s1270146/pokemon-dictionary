@@ -4,13 +4,12 @@ import NavigationButton from '@/components/elements/button/NavigationButton';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import { BiSolidLeftArrow, BiSolidRightArrow } from 'react-icons/bi';
+import { PokemonContext } from '../../hooks';
+import { useContext } from 'react';
 
 export default function DetailNavigation() {
   const params = useParams<{ no: string }>();
-
-  const imageUrl =
-    'https://zukan.pokemon.co.jp/zukan-api/up/images/index/72c82f8be362d1b53ae308d706728411.png';
-  const pokemonName = 'ゲンガー';
+  const pokemon = useContext(PokemonContext);
   const buttonWidth = 'calc(( 30 / 1280 ) *100vw )';
   const butonHeight = 'calc(( 140 / 1280 ) *100vw )';
   const buttonMaxWidth = 30;
@@ -33,7 +32,7 @@ export default function DetailNavigation() {
       <div className="flex">
         <div className="px-10">
           <Image
-            src={imageUrl}
+            src={pokemon?.imgUrl ?? ''}
             alt={`${params.no}`}
             width={500}
             height={0}
@@ -45,7 +44,7 @@ export default function DetailNavigation() {
         <div className="w-[calc(500/1280*100vw)] shadow-[8px_8px_0_#d9d9d9] rounded-lg bg-white m-10 px-8 py-10 flex flex-col justify-between">
           <div>
             <p className="text-xl font-bold">{`No.${params.no}`}</p>
-            <p className="text-3xl font-bold">{pokemonName}</p>
+            <p className="text-3xl font-bold">{pokemon?.pokemonName}</p>
           </div>
           <div className="flex">
             <Image
