@@ -35,3 +35,15 @@ export interface Pokemon {
     description: string;
   }[];
 }
+
+export interface Type {
+  typeId: number;
+  typeName: string;
+  imgUrl: string;
+}
+
+export interface Property {
+  propertyId: number;
+  propertyName: string;
+  description: string;
+}
