@@ -95,6 +95,6 @@ export const useFetchProperties = () => {
       }
     };
     fetchProperties();
-  });
+  }, []);
   return data;
 };
