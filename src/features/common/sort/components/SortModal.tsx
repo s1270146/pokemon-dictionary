@@ -39,9 +39,9 @@ export default function SortModal({ isOpen, closeModal }: SortModalProps) {
           </p>
         </div>
       </ModalHeader>
-      <div className="px-16 py-10">
+      <div className="px-16 py-10 h-2/3 overflow-y-auto">
         <ModalHeading title="ずかん番号" />
-        <div className="flex justify-center">
+        <div className="flex justify-center space-x-4">
           <Button onClick={() => {}} isSelected={true}>
             <div className="flex justify-center">
               <p>1</p>
@@ -58,7 +58,7 @@ export default function SortModal({ isOpen, closeModal }: SortModalProps) {
           </Button>
         </div>
         <ModalHeading title="なまえ" />
-        <div className="flex justify-center">
+        <div className="flex justify-center space-x-4">
           <Button onClick={() => {}} isSelected={false}>
             <div className="flex justify-center">
               <p>ア</p>
@@ -75,7 +75,7 @@ export default function SortModal({ isOpen, closeModal }: SortModalProps) {
           </Button>
         </div>
         <ModalHeading title="高さ" />
-        <div className="flex justify-center">
+        <div className="flex justify-center space-x-4">
           <Button onClick={() => {}} isSelected={false}>
             <div className="flex justify-center">
               <p>高い</p>
@@ -92,7 +92,7 @@ export default function SortModal({ isOpen, closeModal }: SortModalProps) {
           </Button>
         </div>
         <ModalHeading title="重さ" />
-        <div className="flex justify-center">
+        <div className="flex justify-center space-x-4">
           <Button onClick={() => {}} isSelected={false}>
             <div className="flex justify-center">
               <p>重い</p>

@@ -10,7 +10,11 @@ import { searchImagePath } from '@/consts';
 import { SelectOption } from '@/types';
 import Image from 'next/image';
 import MultipleSlider from '../../slider/components/MultipleSlider';
-import { usePokemonNumberRangeState } from '../hooks';
+import {
+  useFetchProperties,
+  useFetchTypes,
+  usePokemonNumberRangeState,
+} from '../hooks';
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -22,10 +26,17 @@ export default function SearchModal({ isOpen, closeModal }: SearchModalProps) {
     1,
     151
   );
-  const options: SelectOption[] = [
-    { label: '特性をえらぶ', value: null },
-    { label: 'ARシステム', value: 'ARシステム' },
-  ];
+  const types = useFetchTypes();
+  const properties = useFetchProperties();
+  const options: SelectOption[] = [{ label: '特性をえらぶ', value: null }];
+  if (properties) {
+    properties.map((value) => {
+      options.push({
+        label: value.propertyName,
+        value: String(value.propertyId),
+      });
+    });
+  }
   return (
     <Modal
       isOpen={isOpen}
@@ -52,18 +63,36 @@ export default function SearchModal({ isOpen, closeModal }: SearchModalProps) {
           </p>
         </div>
       </ModalHeader>
-      <div className="px-16 py-10">
-        <ModalHeading title="フリーワード" />
-        <Input placeholder="なまえやずかん番号でさがす" />
-        <ModalHeading title="タイプ" />
-        <ModalHeading title="特性" />
-        <Select options={options} onChange={() => {}} />
-        <ModalHeading title="番号" />
-        <MultipleSlider
-          min={1}
-          max={151}
-          onChange={setPokemonNumberRangeState}
-        />
+      <div className="h-2/3 overflow-y-auto">
+        <div className="px-16 py-10">
+          <ModalHeading title="フリーワード" />
+          <Input placeholder="なまえやずかん番号でさがす" />
+          <ModalHeading title="タイプ" />
+          <div className="grid grid-cols-9 gap-4">
+            {types &&
+              types.map((value) => {
+                return (
+                  <div key={`${value.typeName}`} className="p-1">
+                    <Image
+                      src={value.imgUrl}
+                      alt={value.typeName}
+                      width={200}
+                      height={200}
+                    />
+                    <p className="text-center text-xs">{value.typeName}</p>
+                  </div>
+                );
+              })}
+          </div>
+          <ModalHeading title="特性" />
+          <Select options={options} onChange={() => {}} />
+          <ModalHeading title="番号" />
+          <MultipleSlider
+            min={1}
+            max={151}
+            onChange={setPokemonNumberRangeState}
+          />
+        </div>
       </div>
       <div
         className="flex justify-center items-center w-full bg-gray-100 absolute bottom-0"
