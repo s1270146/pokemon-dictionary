@@ -13,7 +13,7 @@ export const usePokemonContext = (): Pokemon => {
 };
 
 export interface ApiPokemon {
-  pokemon_no: string;
+  pokemon_no: number;
   pokemon_name: string;
   img_url: string;
   sex: number;
@@ -99,4 +99,68 @@ export const useFetchPokemon = (pokemonNo: number) => {
   }, [pokemonNo]);
 
   return { data, isLoading };
+};
+
+export const useFetchPickupPokemon = (pokemonNumbers: number[]) => {
+  const [data, setData] = useState<Pokemon[] | undefined>(undefined);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const responses = await Promise.all(
+          pokemonNumbers.map(async (no) => {
+            const res = await fetch(`${apiPath}/pokemon/${no.toString()}`);
+
+            if (!res.ok) {
+              throw new Error(`HTTP error! status: ${res.status}`);
+            }
+            return res.json(); // レスポンスをJSONに変換して返す
+          })
+        );
+
+        const jsonData: ApiPokemon[] = responses;
+        const result: Pokemon[] = jsonData.map((data) => {
+          return {
+            pokemonNo: data.pokemon_no.toString().padStart(4, '0'),
+            pokemonName: data.pokemon_name,
+            imgUrl: data.img_url,
+            sex: data.sex,
+            category: data.category,
+            weight: data.weight,
+            height: data.height,
+            hp: data.hp,
+            attack: data.attack,
+            defense: data.defense,
+            specialAttack: data.special_attack,
+            specialDefense: data.special_defense,
+            speed: data.speed,
+            descriptions: data.descriptions,
+            types: data.types.map((type) => {
+              return {
+                typeId: type.type_id,
+                typeName: type.type_name,
+                imgUrl: type.img_url,
+              };
+            }),
+            properties: data.properties.map((property) => {
+              return {
+                propertyId: property.property_id,
+                propertyName: property.property_name,
+                description: property.description,
+              };
+            }),
+          };
+        });
+        setData(result);
+      } catch (error) {
+        console.error(
+          error instanceof Error ? error.message : 'An unknown error occurred.'
+        );
+      }
+    };
+
+    fetchData();
+  }, [pokemonNumbers]);
+
+  return data;
 };

@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { MouseEventHandler, ReactNode } from 'react';
 
 interface NavigationButonProps {
   width: string | number;
@@ -6,6 +6,7 @@ interface NavigationButonProps {
   maxWidth?: string | number;
   maxHeight?: string | number;
   children?: ReactNode;
+  onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
 export default function NavigationButton({
@@ -14,12 +15,14 @@ export default function NavigationButton({
   maxWidth,
   maxHeight,
   children,
+  onClick,
 }: NavigationButonProps) {
   return (
     <>
       <button
         className="bg-white border-2 border-solid border-gray-300 rounded"
         style={{ width, height, maxWidth, maxHeight }}
+        onClick={onClick}
       >
         <div className="flex justify-center">{children}</div>
       </button>
