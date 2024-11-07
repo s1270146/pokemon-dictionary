@@ -1,5 +1,10 @@
+import { Metadata } from 'next';
 import './globals.css';
 import Header from '@/components/layouts/header/Header';
+
+export const metadata: Metadata = {
+  title: 'ポケモンずかん',
+};
 
 export default function RootLayout({
   children,
